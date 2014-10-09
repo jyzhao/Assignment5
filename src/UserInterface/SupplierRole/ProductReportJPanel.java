@@ -7,8 +7,15 @@ package UserInterface.SupplierRole;
 
 import Business.Product;
 import Business.Supplier;
+import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -51,7 +58,7 @@ public class ProductReportJPanel extends javax.swing.JPanel {
                 topSaleProduct = p.getProdName();
             }
         }
-        
+
         if (topSaleProduct != null) {
             topSaleProductJTextField.setText(topSaleProduct);
         }
@@ -71,6 +78,7 @@ public class ProductReportJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         topSaleProductJTextField = new javax.swing.JTextField();
+        performanceChartJButton = new javax.swing.JButton();
 
         productCatalog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,6 +106,13 @@ public class ProductReportJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Top Sale Product:");
 
+        performanceChartJButton.setText("Performance Chart");
+        performanceChartJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                performanceChartJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,8 +130,10 @@ public class ProductReportJPanel extends javax.swing.JPanel {
                         .addGap(171, 171, 171)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(topSaleProductJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(topSaleProductJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(performanceChartJButton)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,16 +145,36 @@ public class ProductReportJPanel extends javax.swing.JPanel {
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(topSaleProductJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
+                    .addComponent(topSaleProductJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(performanceChartJButton))
+                .addGap(95, 95, 95))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void performanceChartJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_performanceChartJButtonActionPerformed
+        // TODO add your handling code here:
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (Product p : supplier.getProductCatalog().getProductCatalog()) {
+            dataset.setValue(p.getInitialAvailability() - p.getAvailability(), "", p.getProdName());
+        }
+
+        JFreeChart chart = ChartFactory.createBarChart("Product Performance", "", "", dataset, PlotOrientation.VERTICAL, false, false, false);
+        CategoryPlot categoryPlot = chart.getCategoryPlot();
+        categoryPlot.setRangeGridlinePaint(Color.BLACK);
+
+        ChartFrame chartFrame = new ChartFrame("Bar Chart for Product Performance", chart);
+        chartFrame.setVisible(true);
+        chartFrame.setSize(900, 600);
+    }//GEN-LAST:event_performanceChartJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton performanceChartJButton;
     private javax.swing.JTable productCatalog;
     private javax.swing.JTextField topSaleProductJTextField;
     // End of variables declaration//GEN-END:variables
