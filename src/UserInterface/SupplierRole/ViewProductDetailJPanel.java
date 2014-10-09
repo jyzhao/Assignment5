@@ -144,6 +144,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         product.setPrice(Integer.parseInt(priceField.getText()));
         product.setProdName(nameField.getText());
         product.setAvailability(Integer.parseInt(availabilityJTextField.getText()));
+        product.setInitialAvailability(Integer.parseInt(availabilityJTextField.getText()));
     }//GEN-LAST:event_saveButtonActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

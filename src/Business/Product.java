@@ -15,7 +15,16 @@ public class Product {
     private int price;
     private int modelNumber;
     private int availability;
+    private int initialAvailability;
 
+    public int getInitialAvailability() {
+        return initialAvailability;
+    }
+
+    public void setInitialAvailability(int initialAvailability) {
+        this.initialAvailability = initialAvailability;
+    }
+            
     public int getAvailability() {
         return availability;
     }

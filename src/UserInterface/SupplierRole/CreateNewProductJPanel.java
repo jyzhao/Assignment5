@@ -122,6 +122,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
             int avail = Integer.parseInt(availabilityJTextField.getText());
             product.setPrice(price);
             product.setAvailability(avail);
+            product.setInitialAvailability(avail);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Please enter a valid price and availability !!!");
         }

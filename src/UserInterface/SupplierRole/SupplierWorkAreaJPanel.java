@@ -74,7 +74,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         reportButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         reportButton4.setText("Review Product Performance >>");
-        reportButton4.setEnabled(false);
         reportButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reportButton4ActionPerformed(evt);
@@ -84,7 +83,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void managePButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePButtonActionPerformed
         // TODO add your handling code here:
-       ManageProductCatalogJPanel mpcjp = new ManageProductCatalogJPanel(userProcessContainer, supplier);
+        ManageProductCatalogJPanel mpcjp = new ManageProductCatalogJPanel(userProcessContainer, supplier);
         userProcessContainer.add("ManageProductCatalogJPanel",mpcjp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -92,10 +91,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private void reportButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButton4ActionPerformed
         // TODO add your handling code here:
-//        ProductReportJPanel prjp = new ProductReportJPanel(userProcessContainer, supplier);
-//        userProcessContainer.add("ProductReportJPanelSupplier", prjp);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ProductReportJPanel prjp = new ProductReportJPanel(userProcessContainer, supplier);
+        userProcessContainer.add("ProductReportJPanelSupplier", prjp);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_reportButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
